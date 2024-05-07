@@ -1,8 +1,7 @@
-import { searchMovies } from "@/lib/features/movies/moviesSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+
 import { Button, Group, TextInput, Title } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import { Dispatch, SetStateAction, useEffect, } from "react";
+import { Dispatch, SetStateAction, } from "react";
 
 
 

@@ -1,7 +1,6 @@
 
 import { Flex, Group, NumberFormatter, Table, Text } from "@mantine/core";
 import { IconStarFilled } from '@tabler/icons-react';
-import { useState } from "react";
 import RateBtn from "./RateBtn";
 
 

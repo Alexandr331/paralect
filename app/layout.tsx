@@ -4,7 +4,8 @@ import { Container, MantineProvider } from "@mantine/core";
 import '@mantine/core/styles.css';
 import './normalize.css'
 import './globals.css'
-import StoreProvider from "@/app/StoreProvider";
+import StoreProvider from "./StoreProvider";
+// import StoreProvider from "@/app/StoreProvider";
 
 export const metadata: Metadata = {
   title: "ArrowFlicks"

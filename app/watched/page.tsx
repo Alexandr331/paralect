@@ -1,12 +1,10 @@
 'use client'
 
-import { Button, Flex, Grid, Image, Text } from "@mantine/core";
+import { Button, Flex, Image, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import MovieCard from "../components/MovieCard";
+import React, { useEffect, useState } from "react";
 import { MovieDetail } from "../page";
 import MoviesList from "../components/MoviesList";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import TitleSearch from "../components/TitleSearch";
 
 const Watched = () => {
