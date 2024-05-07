@@ -2,7 +2,6 @@
 import { useRef } from 'react'
 import { Provider } from 'react-redux'
 import { makeStore, AppStore } from '../lib/store'
-import { fetchMovies } from '@/lib/features/movies/moviesSlice'
 
 export default function StoreProvider({
   children
