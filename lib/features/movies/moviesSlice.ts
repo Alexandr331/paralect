@@ -15,12 +15,12 @@ export function fetchMovies() {
   }
 }
 
-let initialState: MovieDetail[] = []
+let initialState: {results: MovieDetail[], total_pages: number, page: number} = {results: [], total_pages: 0, page: 0}
 
 export default function moviesReducer(state = initialState, action: any) {
   switch (action.type) {
     case 'fetchMovies': {
-      return action.payload
+      state = action.payload
     }
     default: 
     return state 
