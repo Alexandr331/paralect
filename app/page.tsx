@@ -34,7 +34,7 @@ const Home = () => {
   // const movies = useAppSelector(state => state.movies)
   // const dispatch = useAppDispatch()
     
-    const [moviesList, setMoviesList] = useState<MovieDetail[]>()
+    const [moviesList, setMoviesList] = useState<MovieDetail[]>([])
     const [loading, setLoading] = useState(true)
     const [queryStr, setQueryStr] = useState({})
     const [rateFrom, setRateFrom] = useState<number | string>(0)
@@ -53,6 +53,8 @@ const Home = () => {
         setPageTotal(data.total_pages)
         setPageValue(data.page)
       })
+      console.log(moviesList);
+      
     }
       
     const sortBy = async (sort: string) => {
@@ -156,7 +158,7 @@ const Home = () => {
           moviesList === null
             ? <Loader style={{margin: 'auto'}} />
             : <>
-                {moviesList !== null ? <MoviesList moviesList={moviesList}/> : <Text>Movies not found</Text>}
+                <MoviesList moviesList={moviesList}/>
                 <Pagination color='#9854F6' ml={'auto'} w={'fit-content'} total={Number(pageTotal)} value={pageValue} onChange={
                   (e) => {
                     setPageValue(e)
