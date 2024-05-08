@@ -31,7 +31,6 @@ export interface MovieDetail {
 }
 
 const Home = () => {
-    
     const [moviesList, setMoviesList] = useState<MovieDetail[]>([])
     const [loading, setLoading] = useState(true)
     const [queryStr, setQueryStr] = useState({})
@@ -41,20 +40,16 @@ const Home = () => {
     const [year, setYear] = useState<Date | null>(null)
     const [pageValue, setPageValue] = useState<number>(1)
 
-
-    const initialMoviesList = async () => {
-      await getMoviesList().then(data => {
+    useEffect(() => {
+      getMoviesList().then((data) => {
         setMoviesList(data.results)
         setPageTotal(data.total_pages)
         setPageValue(data.page)
         setLoading(false)
       })
-
-    }
-    useEffect(() => {
-      initialMoviesList()
+      // console.log(moviesList);
     }, [])
-      
+
     const sortBy = async (sort: string) => {
       await getSortedMovies(sort).then(data => {
         setMoviesList(data.results)
@@ -62,8 +57,9 @@ const Home = () => {
         setPageValue(data.page)
         setLoading(false)
       })
-    }
 
+    }
+    
     const search = async (query: Sort, page?: number) => {
       await searchMovie(query, page ?? 1).then(data => {
         setMoviesList(data.results)
@@ -130,7 +126,7 @@ const Home = () => {
                 setRateFrom(0)
                 setRateTo(0)
                 setYear(null)
-                initialMoviesList()
+                // initialMoviesList()
               }}
             >Reset filter</Button>
           </Group>

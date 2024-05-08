@@ -3,9 +3,8 @@ import type { Metadata } from "next";
 import Aside from "./components/Aside";
 import { Container, MantineProvider } from "@mantine/core";
 import '@mantine/core/styles.css';
-import './normalize.css'
+// import './normalize.css'
 import './globals.css'
-// import StoreProvider from "@/app/StoreProvider";
 
 export const metadata: Metadata = {
   title: "ArrowFlicks"

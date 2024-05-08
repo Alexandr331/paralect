@@ -2,7 +2,6 @@
 
 import { Button, Flex, Image, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import NotFoundImg from "../public/assets/404.svg" 
 
 export default function NotFound() {
 
