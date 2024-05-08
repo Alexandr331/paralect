@@ -21,6 +21,7 @@ export default function moviesReducer(state = initialState, action: any) {
   switch (action.type) {
     case 'fetchMovies': {
       state = action.payload
+      return state ?? null
     }
     default: 
     return state 
