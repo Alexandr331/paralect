@@ -43,16 +43,16 @@ const Home = () => {
 
 
     const initialMoviesList = async () => {
-      const data = await getMoviesList()
-      return data
-    }
-    useEffect(() => {
-      initialMoviesList().then(data => {
+      await getMoviesList().then(data => {
         setMoviesList(data.results)
         setPageTotal(data.total_pages)
         setPageValue(data.page)
         setLoading(false)
       })
+
+    }
+    useEffect(() => {
+      initialMoviesList()
     }, [])
       
     const sortBy = async (sort: string) => {
