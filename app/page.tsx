@@ -8,6 +8,7 @@ import { genres } from "./genres";
 import MoviesList from "./components/MoviesList";
 import InputBox from "./components/InputBox";
 import TitleSearch from "./components/TitleSearch";
+import { NextPageContext } from "next";
 
 export type Genres = {
   id: string,
@@ -30,7 +31,11 @@ export interface MovieDetail {
     user_rate?: number | string 
 }
 
+
+
 const Home = () => {
+
+  
     const [moviesList, setMoviesList] = useState<MovieDetail[]>([])
     const [loading, setLoading] = useState(true)
     const [queryStr, setQueryStr] = useState({})
@@ -40,13 +45,26 @@ const Home = () => {
     const [year, setYear] = useState<Date | null>(null)
     const [pageValue, setPageValue] = useState<number>(1)
 
+    // useEffect(() => {
+    //   getMoviesList().then(data => {
+    //     setMoviesList(data.results)
+    //     setPageTotal(data.total_pages)
+    //     setPageValue(data.page)
+    //     setLoading(false)
+    //   })
+    // }, [])
+
     useEffect(() => {
-      getMoviesList().then(data => {
+      const initialList = async () => {
+        const data = await getMoviesList()
         setMoviesList(data.results)
         setPageTotal(data.total_pages)
         setPageValue(data.page)
         setLoading(false)
-      })
+      }
+   
+      initialList()
+      
     }, [])
 
     const sortBy = async (sort: string) => {
@@ -67,6 +85,7 @@ const Home = () => {
         setLoading(false)
       })
     }
+
     return (
       <> 
         <TitleSearch title="Movies" setQueryStr={setQueryStr} queryStr={queryStr} search={search}/>
