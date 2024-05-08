@@ -48,7 +48,7 @@ const Home = () => {
     }, [])
 
     const initialMoviesList = async () => {
-      getMoviesList().then(data => {
+      await getMoviesList().then(data => {
         setMoviesList(data.results)
         setPageTotal(data.total_pages)
         setPageValue(data.page)
