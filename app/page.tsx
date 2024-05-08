@@ -168,7 +168,7 @@ const Home = () => {
                   />  
         </Input.Wrapper>   
         {
-          loading
+          !moviesList
             ? <Loader style={{margin: 'auto'}} />
             : <>
                 <MoviesList moviesList={moviesList}/>
