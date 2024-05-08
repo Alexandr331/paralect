@@ -155,7 +155,7 @@ const Home = () => {
                   />  
         </Input.Wrapper>   
         {
-          !moviesList
+          moviesList === null
             ? <Loader style={{margin: 'auto'}} />
             : <>
                 {moviesList ? <MoviesList moviesList={moviesList}/> : <Text>Movies not found</Text>}
