@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Sort, getMoviesList, getSortedMovies, searchMovie }  from './actions'
-import { Button, Group, Input, Loader, NumberInput, Pagination, Select, Text, } from "@mantine/core";
+import { Button, Group, Input, Loader, NumberInput, Pagination, Select, } from "@mantine/core";
 import { YearPickerInput } from "@mantine/dates"
 import { genres } from "./genres";
 import MoviesList from "./components/MoviesList";
@@ -31,8 +31,6 @@ export interface MovieDetail {
 }
 
 const Home = () => {
-  // const movies = useAppSelector(state => state.movies)
-  // const dispatch = useAppDispatch()
     
     const [moviesList, setMoviesList] = useState<MovieDetail[]>([])
     const [loading, setLoading] = useState(true)
@@ -43,25 +41,27 @@ const Home = () => {
     const [year, setYear] = useState<Date | null>(null)
     const [pageValue, setPageValue] = useState<number>(1)
 
+
+    const initialMoviesList = async () => {
+        await getMoviesList().then(data => {
+          console.log(data.results);
+          setMoviesList(data.results)
+          setPageTotal(data.total_pages)
+          setPageValue(data.page)
+          setLoading(false)
+        })
+        
+    }
     useEffect(() => {
       initialMoviesList()
     }, [])
-
-    const initialMoviesList = async () => {
-      await getMoviesList().then(data => {
-        setMoviesList(data.results)
-        setPageTotal(data.total_pages)
-        setPageValue(data.page)
-      })
-      console.log(moviesList);
-      
-    }
       
     const sortBy = async (sort: string) => {
       await getSortedMovies(sort).then(data => {
         setMoviesList(data.results)
         setPageTotal(data.total_pages)
         setPageValue(data.page)
+        setLoading(false)
       })
     }
 
@@ -70,6 +70,7 @@ const Home = () => {
         setMoviesList(data.results)
         setPageTotal(data.total_pages)
         setPageValue(data.page)
+        setLoading(false)
       })
     }
 
@@ -155,7 +156,7 @@ const Home = () => {
                   />  
         </Input.Wrapper>   
         {
-          moviesList === null
+          loading
             ? <Loader style={{margin: 'auto'}} />
             : <>
                 <MoviesList moviesList={moviesList}/>

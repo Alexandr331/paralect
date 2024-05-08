@@ -5,7 +5,6 @@ import { Container, MantineProvider } from "@mantine/core";
 import '@mantine/core/styles.css';
 import './normalize.css'
 import './globals.css'
-import StoreProvider from "./StoreProvider";
 // import StoreProvider from "@/app/StoreProvider";
 
 export const metadata: Metadata = {
@@ -20,16 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body >
-              {/* <StoreProvider> */}
-        <MantineProvider>
-              <main>
-                <Aside />
-                <Container pt={40} w={'100%'} mb={82}>
-                  {children} 
-                </Container>
-              </main> 
-            </MantineProvider>
-              {/* </StoreProvider> */}
+          <MantineProvider>
+            <main>
+              <Aside />
+              <Container pt={40} w={'100%'} mb={82}>
+                {children} 
+              </Container>
+            </main> 
+          </MantineProvider>
         </body>
       </html>
   );
