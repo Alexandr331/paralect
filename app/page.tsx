@@ -161,10 +161,10 @@ const Home = () => {
                   />  
         </Input.Wrapper>   
         {
-          loading
+          !movies
             ? <Loader style={{margin: 'auto'}} />
             : <>
-                {movies.results.length !== 0 ? <MoviesList moviesList={movies.results}/> : <Text>Movies not found</Text>}
+                {movies ? <MoviesList moviesList={movies.results}/> : <Text>Movies not found</Text>}
                 <Pagination color='#9854F6' ml={'auto'} w={'fit-content'} total={Number(movies.total_pages)} value={pageValue} onChange={
                   (e) => {
                     setPageValue(e)
