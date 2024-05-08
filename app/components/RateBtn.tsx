@@ -26,7 +26,7 @@ const RateBtn =({movie}: {movie: MovieDetail}) => {
       setWatched(ratedMovie)
       setRate(ratedMovie?.user_rate)
     }
-  }, [])
+  }, [movie.id])
     
 
     return (
