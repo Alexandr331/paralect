@@ -8,8 +8,6 @@ import { genres } from "./genres";
 import MoviesList from "./components/MoviesList";
 import InputBox from "./components/InputBox";
 import TitleSearch from "./components/TitleSearch";
-import { useAppDispatch, useAppSelector, useAppStore } from "@/lib/hooks";
-import { fetchMovies, searchMovies } from "@/lib/features/movies/moviesSlice";
 
 export type Genres = {
   id: string,
@@ -158,7 +156,7 @@ const Home = () => {
           moviesList === null
             ? <Loader style={{margin: 'auto'}} />
             : <>
-                {moviesList ? <MoviesList moviesList={moviesList}/> : <Text>Movies not found</Text>}
+                {moviesList !== null ? <MoviesList moviesList={moviesList}/> : <Text>Movies not found</Text>}
                 <Pagination color='#9854F6' ml={'auto'} w={'fit-content'} total={Number(pageTotal)} value={pageValue} onChange={
                   (e) => {
                     setPageValue(e)
