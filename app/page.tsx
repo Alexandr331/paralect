@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getSortedMovies, }  from './actions'
 import { Button, Group, Input, Loader, NumberInput, Pagination, Select, Text, } from "@mantine/core";
 import { YearPickerInput } from "@mantine/dates"
@@ -8,7 +8,7 @@ import { genres } from "./genres";
 import MoviesList from "./components/MoviesList";
 import InputBox from "./components/InputBox";
 import TitleSearch from "./components/TitleSearch";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector, useAppStore } from "@/lib/hooks";
 import { fetchMovies, searchMovies } from "@/lib/features/movies/moviesSlice";
 
 export type Genres = {
@@ -55,6 +55,13 @@ const Home = () => {
         setLoading(false)
       })
     }, [dispatch])
+
+  // const store = useAppStore()
+  // const initialized = useRef(false)
+  // if (!initialized.current) {
+  //   store.dispatch(fetchMovies())
+  //   initialized.current = true
+  // }
       
     const sortBy = async (sort: string) => {
       await getSortedMovies(sort).then(data => {

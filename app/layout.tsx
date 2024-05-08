@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import Aside from "./components/Aside";
 import { Container, MantineProvider } from "@mantine/core";
@@ -17,18 +18,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en">
+    <html lang="en">
         <body >
-            <MantineProvider>
               <StoreProvider>
+        <MantineProvider>
               <main>
                 <Aside />
                 <Container pt={40} w={'100%'} mb={82}>
                   {children} 
                 </Container>
               </main> 
-              </StoreProvider>
             </MantineProvider>
+              </StoreProvider>
         </body>
       </html>
   );
