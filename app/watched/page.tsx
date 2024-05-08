@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { MovieDetail } from "../page";
 import MoviesList from "../components/MoviesList";
 import TitleSearch from "../components/TitleSearch";
+import { Sort } from "../actions";
 
 const Watched = () => {
 
@@ -18,7 +19,7 @@ const Watched = () => {
         setFavoriteMovies(JSON.parse(localStorage.getItem('ratedMovies') || ''));
     },[])
 
-    const handleSearch = (queryStr: {query: string}) => {
+    const handleSearch = (queryStr: Sort) => {
       const {query} = queryStr
       if (query)
       setFilteredResults(favoriteMovies?.filter((result) =>

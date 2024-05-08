@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body >
-              <StoreProvider>
+              {/* <StoreProvider> */}
         <MantineProvider>
               <main>
                 <Aside />
@@ -29,7 +29,7 @@ export default function RootLayout({
                 </Container>
               </main> 
             </MantineProvider>
-              </StoreProvider>
+              {/* </StoreProvider> */}
         </body>
       </html>
   );

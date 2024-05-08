@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { getSortedMovies, }  from './actions'
+import React, { useEffect, useState } from "react";
+import { Sort, getMoviesList, getSortedMovies, searchMovie }  from './actions'
 import { Button, Group, Input, Loader, NumberInput, Pagination, Select, Text, } from "@mantine/core";
 import { YearPickerInput } from "@mantine/dates"
 import { genres } from "./genres";
@@ -33,8 +33,8 @@ export interface MovieDetail {
 }
 
 const Home = () => {
-  const movies = useAppSelector(state => state.movies)
-  const dispatch = useAppDispatch()
+  // const movies = useAppSelector(state => state.movies)
+  // const dispatch = useAppDispatch()
     
     const [moviesList, setMoviesList] = useState<MovieDetail[]>()
     const [loading, setLoading] = useState(true)
@@ -45,23 +45,17 @@ const Home = () => {
     const [year, setYear] = useState<Date | null>(null)
     const [pageValue, setPageValue] = useState<number>(1)
 
-
-
     useEffect(() => {
-      const fetch = async () => {
-        await dispatch(fetchMovies())
-      }
-      fetch().then(() => {
-        setLoading(false)
-      })
-    }, [dispatch])
+      initialMoviesList()
+    }, [])
 
-  // const store = useAppStore()
-  // const initialized = useRef(false)
-  // if (!initialized.current) {
-  //   store.dispatch(fetchMovies())
-  //   initialized.current = true
-  // }
+    const initialMoviesList = async () => {
+      getMoviesList().then(data => {
+        setMoviesList(data.results)
+        setPageTotal(data.total_pages)
+        setPageValue(data.page)
+      })
+    }
       
     const sortBy = async (sort: string) => {
       await getSortedMovies(sort).then(data => {
@@ -71,8 +65,12 @@ const Home = () => {
       })
     }
 
-    const search = () => {
-      dispatch(searchMovies(queryStr))
+    const search = async (query: Sort, page?: number) => {
+      await searchMovie(query, page ?? 1).then(data => {
+        setMoviesList(data.results)
+        setPageTotal(data.total_pages)
+        setPageValue(data.page)
+      })
     }
 
     return (
@@ -132,9 +130,7 @@ const Home = () => {
                 setRateFrom(0)
                 setRateTo(0)
                 setYear(null)
-                dispatch(fetchMovies()).then(() => {
-                  setLoading(false)
-                })
+                initialMoviesList()
               }}
             >Reset filter</Button>
           </Group>
@@ -156,19 +152,17 @@ const Home = () => {
                     ]}
                     placeholder="Most popular"
                     w={'fit-content'}
-                    // ml={'auto'}
-
                   />  
         </Input.Wrapper>   
         {
-          !movies
+          !moviesList
             ? <Loader style={{margin: 'auto'}} />
             : <>
-                {movies ? <MoviesList moviesList={movies.results}/> : <Text>Movies not found</Text>}
-                <Pagination color='#9854F6' ml={'auto'} w={'fit-content'} total={Number(movies.total_pages)} value={pageValue} onChange={
+                {moviesList ? <MoviesList moviesList={moviesList}/> : <Text>Movies not found</Text>}
+                <Pagination color='#9854F6' ml={'auto'} w={'fit-content'} total={Number(pageTotal)} value={pageValue} onChange={
                   (e) => {
                     setPageValue(e)
-                    dispatch(searchMovies(queryStr, e))
+                    search(queryStr, e)
                     }
                   }/> 
               </>

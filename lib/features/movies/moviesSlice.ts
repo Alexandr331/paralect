@@ -1,5 +1,5 @@
 import { MovieDetail } from '@/app/page'
-import { Sort, getMoviesList, searchByTitle, urlString } from '@/app/actions'
+import { Sort, getMoviesList, searchByTitle, searchMovie } from '@/app/actions'
 
 
 const options = {
@@ -12,7 +12,7 @@ const options = {
 
 export function searchMovies(queryStr: Sort, page?: number) {  
   return async function searchMoviesThunk(dispatch: any) {
-    const response = await urlString(queryStr, page ?? 1)
+    const response = await searchMovie(queryStr, page ?? 1)
     dispatch({ type: 'fetchMovies', payload: response })
   }
 }

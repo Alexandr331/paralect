@@ -17,7 +17,7 @@ const options = {
 };
 
 
-export async function urlString(queryStr: Sort, page: number) {  
+export async function searchMovie(queryStr: Sort, page: number) {  
   if (queryStr.query) {
     const response = await searchByTitle(queryStr.query, page)
     return response

@@ -2,11 +2,12 @@
 import { Button, Group, TextInput, Title } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import { Dispatch, SetStateAction, } from "react";
+import { Sort } from "../actions";
 
 
 
 const TitleSearch = (
-  {title, setQueryStr, queryStr, search}: {title: string, setQueryStr: Dispatch<SetStateAction<{ query: string; }>>, queryStr: {}, search: (queryStr: any) => void}
+  {title, setQueryStr, queryStr, search}: {title: string, setQueryStr: Dispatch<SetStateAction<{ query: string; }>>, queryStr: {}, search: (query: Sort) => void}
 ) => {
 
   return (

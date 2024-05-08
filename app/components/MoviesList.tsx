@@ -6,8 +6,7 @@ import { MovieDetail } from "../page"
 import React from "react"
 
 
-const MoviesList = ({moviesList}: any) => {  
-  
+const MoviesList = React.memo( ({moviesList}: any) => {  
       return (
           <Grid mb={24}>
             {moviesList?.map((movie: MovieDetail) => (
@@ -18,8 +17,8 @@ const MoviesList = ({moviesList}: any) => {
           </Grid>
       )
   }
+)
 
-
-// MoviesList.displayName = 'MoviesList'
+MoviesList.displayName = 'MoviesList'
 
 export default MoviesList
