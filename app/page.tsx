@@ -41,13 +41,12 @@ const Home = () => {
     const [pageValue, setPageValue] = useState<number>(1)
 
     useEffect(() => {
-      getMoviesList().then((data) => {
+      getMoviesList().then(data => {
         setMoviesList(data.results)
         setPageTotal(data.total_pages)
         setPageValue(data.page)
         setLoading(false)
       })
-      // console.log(moviesList);
     }, [])
 
     const sortBy = async (sort: string) => {
@@ -68,7 +67,6 @@ const Home = () => {
         setLoading(false)
       })
     }
-
     return (
       <> 
         <TitleSearch title="Movies" setQueryStr={setQueryStr} queryStr={queryStr} search={search}/>
