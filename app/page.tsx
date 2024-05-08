@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getSortedMovies, }  from './actions'
 import { Button, Group, Input, Loader, NumberInput, Pagination, Select, Text, } from "@mantine/core";
 import { YearPickerInput } from "@mantine/dates"
@@ -45,11 +45,16 @@ const Home = () => {
     const [year, setYear] = useState<Date | null>(null)
     const [pageValue, setPageValue] = useState<number>(1)
 
+
+
     useEffect(() => {
-        dispatch(fetchMovies()).then(() => {
-          setLoading(false)
-        })
-      }, [dispatch])
+      const fetch = async () => {
+        await dispatch(fetchMovies())
+      }
+      fetch().then(() => {
+        setLoading(false)
+      })
+    }, [dispatch])
       
     const sortBy = async (sort: string) => {
       await getSortedMovies(sort).then(data => {
@@ -149,7 +154,7 @@ const Home = () => {
                   />  
         </Input.Wrapper>   
         {
-          loading 
+          loading
             ? <Loader style={{margin: 'auto'}} />
             : <>
                 {movies.results.length !== 0 ? <MoviesList moviesList={movies.results}/> : <Text>Movies not found</Text>}
