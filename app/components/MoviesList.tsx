@@ -5,7 +5,6 @@ import MovieCard from "./MovieCard"
 import React from "react"
 import { MovieDetail } from "./Home"
 
-
 const MoviesList = React.memo( ({moviesList}: any) => {  
       return (
           <Grid mb={24} >
