@@ -14,27 +14,32 @@ const Watched = () => {
     const router = useRouter()
     const [queryStr, setQueryStr] = useState<{query: string}>({query: ''})
     const [favoriteMovies, setFavoriteMovies] = useState<MovieDetail[]>();
-    const [filteredResults, setFilteredResults] = useState<MovieDetail[]>();
+    const [filteredResults, setFilteredResults] = useState<MovieDetail[] | undefined>();
+    const [loading, setLoading] = useState<boolean>()
 
     useEffect(() => {
+      setLoading(true)
+      if (localStorage.getItem('ratedMovies')) {
         setFavoriteMovies(JSON.parse(localStorage.getItem('ratedMovies') || ''));
+        setLoading(false)
+      }
     },[])
 
     const handleSearch = (queryStr: Sort) => {
       const {query} = queryStr
-      if (query)
-      setFilteredResults(favoriteMovies?.filter((result) =>
-        result.original_title.toLowerCase().includes(query.toLowerCase())
-      ))      
+      if (query) {
+          setFilteredResults(favoriteMovies?.filter((result) =>
+            result.original_title.toLowerCase().includes(query.toLowerCase())
+          ))  
+      }
       else setFilteredResults(favoriteMovies)
-      
     };
   
     return (
       <>
         <TitleSearch title="Watched" setQueryStr={setQueryStr} queryStr={queryStr} search={handleSearch}/>
             {
-                !favoriteMovies
+                loading
                 ?
                 (
                     <Flex 
