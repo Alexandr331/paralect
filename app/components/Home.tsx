@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { Sort, getMoviesList, getSortedMovies, searchMovie }  from '../actions'
-import { Button, Grid, Group, Input, Loader, NumberInput, Pagination, Select, Text, } from "@mantine/core";
+import { Button, Flex, Grid, Group, Input, Loader, NumberInput, Pagination, Select, Text } from "@mantine/core";
 import { YearPickerInput } from "@mantine/dates"
 import { genres } from "../genres";
 import MoviesList from "../components/MoviesList";
 import InputBox from "../components/InputBox";
 import TitleSearch from "../components/TitleSearch";
+import Image from "next/image";
 
 export type Genres = {
   id: string,
@@ -34,7 +35,7 @@ export interface MovieDetail {
 
 const Home = ({moviesList}: {moviesList: {results: MovieDetail[], page: number, total_pages: number}}) => {
   
-    const [movies, setMovies] = useState<MovieDetail[]>([])
+    const [movies, setMovies] = useState<MovieDetail[]>()
     const [loading, setLoading] = useState(true)
     const [queryStr, setQueryStr] = useState({})
     const [rateFrom, setRateFrom] = useState<number | string>(0)
@@ -161,8 +162,23 @@ const Home = ({moviesList}: {moviesList: {results: MovieDetail[], page: number, 
                             placeholder="Most popular"
                             w={'fit-content'}
                           />  
-                </Input.Wrapper>   
-                <MoviesList moviesList={movies}/>
+                </Input.Wrapper> 
+                {
+                  movies?.length !== 0
+                  ? <MoviesList moviesList={movies}/>
+                  : (
+                    <Flex 
+                      // h={'100%'}
+                      justify={'center'}
+                      align={'center'}
+                      direction={'column'}
+                  >
+                      <Image height={252} width={310} src="./assets/badSearch.svg" alt="watchlist"/>
+                      <Text mb={16} size="lg" fw={600}>We don&rsquo;t have such movies, look for another one</Text>
+                    </Flex>
+                )
+                }  
+                
                 <Pagination size={"sm"} siblings={1} boundaries={1} c={'#9854F6'} ml={'auto'} w={'fit-content'} total={Number(pageTotal)} value={pageValue} onChange={
                   (e) => {
                     setPageValue(e)

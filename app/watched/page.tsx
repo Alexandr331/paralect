@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Flex, Image, Text } from "@mantine/core";
+import { Button, Flex, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -8,6 +8,7 @@ import MoviesList from "../components/MoviesList";
 import TitleSearch from "../components/TitleSearch";
 import { Sort } from "../actions";
 import { MovieDetail } from "../components/Home";
+import Image from "next/image";
 
 const Watched = () => {
 
@@ -48,7 +49,7 @@ const Watched = () => {
                     align={'center'}
                     direction={'column'}
                 >
-                    <Image width={400} src="./assets/loading.svg" alt="watchlist"/>
+                    <Image height={300} width={400} src="./assets/loading.svg" alt="watchlist"/>
                     <Text mb={16} size="lg" fw={600}>You haven&rsquo;t rated any films yet</Text>
                     <Button bg={'#9854F6'} onClick={() => router.push('/')}>Go Home</Button>
                 </Flex>
