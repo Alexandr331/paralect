@@ -8,7 +8,6 @@ import { genres } from "../genres";
 import MoviesList from "../components/MoviesList";
 import InputBox from "../components/InputBox";
 import TitleSearch from "../components/TitleSearch";
-import { NextPageContext } from "next";
 
 export type Genres = {
   id: string,
