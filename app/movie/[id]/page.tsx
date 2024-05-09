@@ -53,7 +53,7 @@ const Movie = () => {
                           ?
                           <>
                           <Title mb={16} order={3}>Trailer</Title>
-                          <iframe style={{marginBottom: '16px', borderRadius: '10px', border: 'none'}} width={560} height={315} src={`https://www.youtube.com/embed/${trailer.results[trailer.results.length-1].key}?si=${trailer.results[trailer.results.length-1].id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> 
+                          <iframe style={{marginBottom: '16px', borderRadius: '10px', border: 'none', aspectRatio: '16/9'}} width={'100%'} src={`https://www.youtube.com/embed/${trailer.results[trailer.results.length-1].key}?si=${trailer.results[trailer.results.length-1].id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> 
                           <hr style={{marginBottom: '16px'}}/>
                           </>
                           :

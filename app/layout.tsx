@@ -2,7 +2,8 @@
 import type { Metadata } from "next";
 import Aside from "./components/Aside";
 import { Container, MantineProvider } from "@mantine/core";
-import '@mantine/core/styles.css';
+import '@mantine/core/styles.css'; 
+import '@mantine/dates/styles.css';
 import './normalize.css'
 import './globals.css'
 

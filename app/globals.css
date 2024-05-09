@@ -5,22 +5,9 @@ main {
     display: flex;
     background-color: #F5F5F6;
     min-height: 100vh;
+    position: relative;
 }
 
-.aside__nav-bar__link {
-    padding: 10px;
-    border-radius: 8px;
-    color: #9854F6;
-    margin-bottom: 16px;
-}
-
-.aside__nav-bar__link:hover {
-    background-color: #E5D5FA;
-}
-
-.active {
-    background-color: #E5D5FA;
-}
 
 .movie-card {
     background-color: white;
@@ -36,3 +23,8 @@ main {
     }
 }
 
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+}

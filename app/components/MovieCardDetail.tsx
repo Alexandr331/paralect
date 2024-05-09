@@ -19,11 +19,10 @@ const MovieCardDetail = ({movie}: any) => {
         <Group mb={20} key={movie?.id} className="movie-card" p={24}>
           <img width={250} src={movie?.poster_path === null ? "./assets/placeholder-post.jpg" : `http://media.themoviedb.org/t/p/original/${movie.poster_path}`} alt="poster" />
           <Flex 
-            h={'100%'}
-            justify="flex-start"
-            align="flex-start"
+            justify="space-between"
             direction="column"
             wrap="nowrap"
+            style={{alignSelf: 'normal'}}
           >
             <Text c={'#9854F6'} fw={600} size="xl">{movie?.original_title}</Text>
             <Text mb={4} c={'#7B7C88'} fw={400} size="md">{movie?.release_date.slice(0, 4)}</Text>

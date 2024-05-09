@@ -16,27 +16,27 @@ const Aside = () => {
 
     return (
       <>
-        <aside className={`${classes.aside} ${toggledNav ? classes.active : ''}`}>
-          <CloseButton c={'black'} bg={'transparent'} className={classes.close} onClick={() => {
+        <aside className={`${classes.aside} ${toggledNav ? classes.activePopover : ''}`}>
+          <CloseButton pos={'fixed'} top={10} right={10} size={"xl"} c={'#9854F6'} bg={'transparent'} className={classes.close} onClick={() => {
             setToggledNav(false)
           }} />
           <Link className={classes.logo} href={'/'} onClick={() => setToggledNav(false)}>
             <Image priority height={36} width={179} src={'../assets/logo.svg'} alt="logo"/>
           </Link>
-          <nav className={classes.aside__nav}>
-            <Link className={`aside__nav-bar__link ${pathname === '/' ? 'active' : ''}`} href={'/'} onClick={() => setToggledNav(false)}>
+          <nav className={classes.asideNav}>
+            <Link className={`${classes.asideNavbarLink} ${pathname === '/' ? classes.activeLink : ''}`} href={'/'} onClick={() => setToggledNav(false)}>
               Movies
             </Link>
-            <Link className={`aside__nav-bar__link ${pathname === '/watched' ? 'active' : ''}`} href={'/watched'} onClick={() => setToggledNav(false)}>
+            <Link className={`${classes.asideNavbarLink} ${pathname === '/watched' ? classes.activeLink : ''}`} href={'/watched'} onClick={() => setToggledNav(false)}>
               Rated movies
             </Link>
           </nav>
         </aside>
-      <ActionIcon hiddenFrom="sm" c={'black'} bg={'transparent'}  onClick={() => {
-        setToggledNav(true)
-      }}>
-        <IconMenu2 />
-      </ActionIcon>
+        <ActionIcon mt={20} ml={'auto'} mr={20} size={'xl'} className={classes.open} hiddenFrom="sm" c={'black'} bg={'transparent'}  onClick={() => {
+              setToggledNav(true)
+            }}>
+          <IconMenu2 size={36} color="#9854F6"/>
+        </ActionIcon>
       </>
     )
   }

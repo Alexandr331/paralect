@@ -12,7 +12,7 @@ async function getMovies() {
 const Main = async() => {
   const moviesList = await getMovies()
   
-  return <Home moviesList={moviesList} />
+  return <Home  moviesList={moviesList} />
 }
 
 export default Main

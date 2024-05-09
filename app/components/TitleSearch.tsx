@@ -19,7 +19,7 @@ const TitleSearch = (
           variant="unstyled"
           placeholder="Search movie title" 
           type="text"  
-          w={'75%'}
+          // w={'75%'}
           onChange={(e) => {
             setQueryStr({'query': e.target.value})
             // search(e.target.value)

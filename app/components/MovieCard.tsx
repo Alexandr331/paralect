@@ -19,7 +19,7 @@ const MovieCard = ({movie}: any) => {
           <Link href={`/movie/${movie?.id}`} style={{display: 'flex', width: '100%', gap: '16px'}}>
             <img width={119} height={178.5} src={movie?.poster_path === null ? "./assets/placeholder-post.jpg" : `http://media.themoviedb.org/t/p/original/${movie.poster_path}`} alt="poster" />
             <Flex 
-              w={"60%"}
+              w={"55%"}
               justify="flex-start"
               align="flex-start"
               direction="column"
