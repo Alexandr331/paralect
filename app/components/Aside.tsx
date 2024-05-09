@@ -32,11 +32,11 @@ const Aside = () => {
             </Link>
           </nav>
         </aside>
-      {/* <ActionIcon hiddenFrom="sm" c={'black'} bg={'transparent'}  onClick={() => {
+      <ActionIcon hiddenFrom="sm" c={'black'} bg={'transparent'}  onClick={() => {
         setToggledNav(true)
       }}>
         <IconMenu2 />
-      </ActionIcon> */}
+      </ActionIcon>
       </>
     )
   }
