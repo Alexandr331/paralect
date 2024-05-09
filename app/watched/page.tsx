@@ -3,10 +3,10 @@
 import { Button, Flex, Image, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { MovieDetail } from "../page";
 import MoviesList from "../components/MoviesList";
 import TitleSearch from "../components/TitleSearch";
 import { Sort } from "../actions";
+import { MovieDetail } from "../components/Home";
 
 const Watched = () => {
 

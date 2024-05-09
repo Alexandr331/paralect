@@ -4,8 +4,7 @@ import { ActionIcon, Button, Flex, Modal, Rating, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconStarFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { MovieDetail } from "../page";
-
+import { MovieDetail } from "./Home";
 const RateBtn =({movie}: {movie: MovieDetail}) => {
   const [watched, setWatched] = useState<MovieDetail | undefined>()
   const [rate, setRate] = useState<number>()

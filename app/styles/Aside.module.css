@@ -1,0 +1,53 @@
+.aside {
+    padding: 20px;
+    min-width: 280px;
+    background-color: #F2EBF9;
+}
+
+.aside__nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    margin-bottom: 80px;
+}
+
+.open {
+    visibility: hidden;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.close {
+    visibility: hidden;
+}
+
+@media (max-width: 748px) {
+    .aside {
+        display: none;
+        .close {
+            visibility: visible;
+        }
+    }
+    .open {
+        visibility: visible;
+    }
+
+}
+
+.active {
+    display: block;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    min-height: 100vh;
+    z-index: 100;
+}
