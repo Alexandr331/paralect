@@ -1,10 +1,11 @@
 'use client'
 
-import { Box, Flex, Group, Text } from "@mantine/core";
+import { Box, Flex, Group, Text, Image } from "@mantine/core";
 import { IconStarFilled } from '@tabler/icons-react';
 import { genres } from "../genres";
 import Link from "next/link";
 import RateBtn from "./RateBtn";
+import React from "react";
 
 const MovieCard = ({movie}: any) => {
   
@@ -17,7 +18,7 @@ const MovieCard = ({movie}: any) => {
     return (
         <Group  h={226} key={movie?.id} className="movie-card" p={24}>
           <Link href={`/movie/${movie?.id}`} style={{display: 'flex', width: '100%', gap: '16px'}}>
-            <img width={119} height={178.5} src={movie?.poster_path === null ? "./assets/placeholder-post.jpg" : `http://media.themoviedb.org/t/p/original/${movie.poster_path}`} alt="poster" />
+            <Image width={119} height={178.5} src={movie?.poster_path === null ? "./assets/placeholder-post.jpg" : `http://media.themoviedb.org/t/p/original/${movie.poster_path}`} alt="poster" />
             <Flex 
               w={"55%"}
               justify="flex-start"
@@ -41,6 +42,5 @@ const MovieCard = ({movie}: any) => {
         </Group>
     )
 }
-
 
 export default MovieCard

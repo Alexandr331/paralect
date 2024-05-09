@@ -1,5 +1,5 @@
 
-import { Flex, Group, NumberFormatter, Table, Text } from "@mantine/core";
+import { Flex, Group, NumberFormatter, Table, Text, Image } from "@mantine/core";
 import { IconStarFilled } from '@tabler/icons-react';
 import RateBtn from "./RateBtn";
 
@@ -11,13 +11,11 @@ const MovieCardDetail = ({movie}: any) => {
     movie.genres.forEach((genre: any) => {
       genreArray.push(genre.name)
     })
-    
-    
 
     return (
       
         <Group mb={20} key={movie?.id} className="movie-card" p={24}>
-          <img width={250} src={movie?.poster_path === null ? "./assets/placeholder-post.jpg" : `http://media.themoviedb.org/t/p/original/${movie.poster_path}`} alt="poster" />
+          <Image h={375} w={250} src={movie?.poster_path === null ? "./assets/placeholder-post.jpg" : `http://media.themoviedb.org/t/p/original/${movie.poster_path}`} alt="poster" />
           <Flex 
             justify="space-between"
             direction="column"

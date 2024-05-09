@@ -1,25 +1,31 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { Sort, getMoviesList, getSortedMovies, searchMovie }  from '../actions'
-import { Button, Flex, Grid, Group, Input, Loader, NumberInput, Pagination, Select, Text } from "@mantine/core";
+import { Sort, getSortedMovies, searchMovie }  from '../actions'
+import { Image, Button, Flex, Grid, Group, Input, Loader, NumberInput, Pagination, Select, Text } from "@mantine/core";
 import { YearPickerInput } from "@mantine/dates"
 import { genres } from "../genres";
 import MoviesList from "../components/MoviesList";
 import InputBox from "../components/InputBox";
 import TitleSearch from "../components/TitleSearch";
-import Image from "next/image";
 
 export type Genres = {
   id: string,
   name: string
 }
 
+export type Companies = {
+  id: string, 
+  logo_path: string, 
+  name: string, 
+  origin_country: string
+}
+
 export interface MovieDetail {
     id: number
     original_title: string
     poster_path: string | null
-    genre_ids: string[] | number[],
+    genre_ids: number[],
     release_date: string,
     vote_average: string,
     runtime: string,
@@ -27,7 +33,7 @@ export interface MovieDetail {
     budget: string,
     overview: string,
     genres: Genres[],
-    production_companies: {id: string, logo_path: string, name: string, origin_country: string}[]
+    production_companies: Companies[]
     user_rate?: number | string 
 }
 
@@ -36,7 +42,7 @@ export interface MovieDetail {
 const Home = ({moviesList}: {moviesList: {results: MovieDetail[], page: number, total_pages: number}}) => {
   
     const [movies, setMovies] = useState<MovieDetail[]>()
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState<boolean>(true)
     const [queryStr, setQueryStr] = useState({})
     const [rateFrom, setRateFrom] = useState<number | string>(0)
     const [rateTo, setRateTo] = useState<number | string>(0)
@@ -173,7 +179,7 @@ const Home = ({moviesList}: {moviesList: {results: MovieDetail[], page: number, 
                       align={'center'}
                       direction={'column'}
                   >
-                      <Image height={252} width={310} src="./assets/badSearch.svg" alt="watchlist"/>
+                      <Image h={252} w={310} src="./assets/badSearch.svg" alt="watchlist"/>
                       <Text mb={16} size="lg" fw={600}>We don&rsquo;t have such movies, look for another one</Text>
                     </Flex>
                 )
