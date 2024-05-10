@@ -9,6 +9,7 @@ import MoviesList from "../components/MoviesList";
 import InputBox from "../components/InputBox";
 import TitleSearch from "../components/TitleSearch";
 import { IMovieDetail, ISort } from "../interfaces";
+import Empty from "./Empty";
 
 
 
@@ -147,17 +148,7 @@ const Home = ({moviesList}: {moviesList: {results: IMovieDetail[], page: number,
                 {
                   movies?.length !== 0
                   ? <MoviesList moviesList={movies}/>
-                  : (
-                    <Flex 
-                      // h={'100%'}
-                      justify={'center'}
-                      align={'center'}
-                      direction={'column'}
-                  >
-                      <Image h={252} w={310} src="./assets/badSearch.svg" alt="watchlist"/>
-                      <Text mb={16} size="lg" fw={600}>We don&rsquo;t have such movies, look for another one</Text>
-                    </Flex>
-                )
+                  : <Empty text="We don&rsquo;t have such movies, look for another one" src="./assets/badSearch.svg"/>
                 }  
                 
                 <Pagination size={"sm"} siblings={1} boundaries={1} c={'#9854F6'} ml={'auto'} w={'fit-content'} total={Number(pageTotal)} value={pageValue} onChange={

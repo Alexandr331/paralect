@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import MoviesList from "../components/MoviesList";
 import TitleSearch from "../components/TitleSearch";
 import { IMovieDetail, ISort } from "../interfaces";
+import Empty from "../components/Empty";
 
 const Watched = () => {
 
@@ -39,21 +40,12 @@ const Watched = () => {
         <TitleSearch title="Watched" setQueryStr={setQueryStr} queryStr={queryStr} search={handleSearch}/>
             {
                 loading
-                ?
-                (
-                    <Flex 
-                    h={'100%'}
-                    justify={'center'}
-                    align={'center'}
-                    direction={'column'}
-                >
-                    <Image h={300} w={400} src="./assets/loading.svg" alt="watchlist"/>
-                    <Text mb={16} size="lg" fw={600}>You haven&rsquo;t rated any films yet</Text>
+                ? (
+                  <Empty text="You haven&rsquo;t rated any films yet" src="./assets/loading.svg" >
                     <Button bg={'#9854F6'} onClick={() => router.push('/')}>Go Home</Button>
-                </Flex>
+                  </Empty>
                 )
-                :
-                <MoviesList moviesList={filteredResults ? filteredResults : favoriteMovies} />
+                : <MoviesList moviesList={filteredResults ? filteredResults : favoriteMovies} />
             }
         </>
     )
