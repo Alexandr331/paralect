@@ -3,12 +3,12 @@
 import { Grid } from "@mantine/core"
 import MovieCard from "./MovieCard"
 import React from "react"
-import { MovieDetail } from "./Home"
+import { IMovieDetail } from "../interfaces"
 
 const MoviesList = React.memo( ({moviesList}: any) => {  
       return (
           <Grid mb={24} >
-            {moviesList?.map((movie: MovieDetail) => (
+            {moviesList?.map((movie: IMovieDetail) => (
               <Grid.Col span={{base: 12, md: 6}} key={movie.id} >
                 <MovieCard movie={movie} />
               </Grid.Col>

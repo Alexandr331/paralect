@@ -6,15 +6,14 @@ import React, { useEffect, useState } from "react";
 
 import MoviesList from "../components/MoviesList";
 import TitleSearch from "../components/TitleSearch";
-import { Sort } from "../actions";
-import { MovieDetail } from "../components/Home";
+import { IMovieDetail, ISort } from "../interfaces";
 
 const Watched = () => {
 
     const router = useRouter()
     const [queryStr, setQueryStr] = useState<{query: string}>({query: ''})
-    const [favoriteMovies, setFavoriteMovies] = useState<MovieDetail[]>();
-    const [filteredResults, setFilteredResults] = useState<MovieDetail[] | undefined>();
+    const [favoriteMovies, setFavoriteMovies] = useState<IMovieDetail[]>();
+    const [filteredResults, setFilteredResults] = useState<IMovieDetail[] | undefined>();
     const [loading, setLoading] = useState<boolean>()
 
     useEffect(() => {
@@ -25,7 +24,7 @@ const Watched = () => {
       }
     },[])
 
-    const handleSearch = (queryStr: Sort) => {
+    const handleSearch = (queryStr: ISort) => {
       const {query} = queryStr
       if (query) {
           setFilteredResults(favoriteMovies?.filter((result) =>

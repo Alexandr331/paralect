@@ -2,15 +2,29 @@
 import { Flex, Group, NumberFormatter, Table, Text, Image } from "@mantine/core";
 import { IconStarFilled } from '@tabler/icons-react';
 import RateBtn from "./RateBtn";
+import { useEffect, useState } from "react";
 
 
 const MovieCardDetail = ({movie}: any) => {
+
+  const [durationFormt, setDurationFormat] = useState<string>()
 
     const genreArray: string[] = []
 
     movie.genres.forEach((genre: any) => {
       genreArray.push(genre.name)
     })
+    
+    const formatDuration = (mins: number) => {
+      let hours = Math.trunc(mins/60)
+      let minutes = mins%60
+      let formatStr = `${hours}h ${minutes}m`
+      setDurationFormat(formatStr)
+    }
+    
+    useEffect(() => {
+      formatDuration(movie.runtime)
+    }, [])
 
     return (
       
@@ -33,7 +47,7 @@ const MovieCardDetail = ({movie}: any) => {
                 <Table.Tbody>
                   <Table.Tr key='Duration'>
                     <Table.Td c={'grey'}>Duration</Table.Td>
-                    <Table.Td>{movie.runtime}</Table.Td>
+                    <Table.Td>{durationFormt}</Table.Td>
                   </Table.Tr>
                   <Table.Tr key='Premiere'>
                     <Table.Td c={'grey'}>Premiere</Table.Td>

@@ -4,13 +4,13 @@ import { ActionIcon, Button, Flex, Modal, Rating, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconStarFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { MovieDetail } from "./Home";
+import { IMovieDetail } from "../interfaces";
 
 
-const RateBtn =({movie}: {movie: MovieDetail}) => {
-  const [watched, setWatched] = useState<MovieDetail | undefined>()
+const RateBtn =({movie}: {movie: IMovieDetail}) => {
+  const [watched, setWatched] = useState<IMovieDetail | undefined>()
   const [rate, setRate] = useState<number>()
-  const [ratedMovie, setRatedMovie] = useState<MovieDetail[] | undefined>()
+  const [ratedMovie, setRatedMovie] = useState<IMovieDetail[] | undefined>()
   const [opened, { open, close }] = useDisclosure(false);
 
   const watchedMovie = () => {
@@ -23,7 +23,7 @@ const RateBtn =({movie}: {movie: MovieDetail}) => {
     if (localStorage.getItem('ratedMovies')) {
       const ratedMoviesList = JSON.parse(localStorage.getItem('ratedMovies') || '')
       setRatedMovie(ratedMoviesList)
-      const ratedMovie = ratedMoviesList.find((el: MovieDetail) => el.id === movie.id)
+      const ratedMovie = ratedMoviesList.find((el: IMovieDetail) => el.id === movie.id)
       setWatched(ratedMovie)
       setRate(ratedMovie?.user_rate)
     }

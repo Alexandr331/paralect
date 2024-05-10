@@ -1,23 +1,17 @@
 'use server'
 
-export interface Sort {
-  'query'?: string,
-  'with_genres'?: string,
-  'primary_release_year'?: string,
-  'vote_average.gte'?: string
-  'vote_average.lte'?: string
-}
+import { ISort } from "./interfaces";
 
 const options = {
   method: 'GET',
   headers: {
       accept: 'application/json',
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1N2NjZmZhYzkxNWM1Yjc0ODMwYWY1MzJiZjA1NTE4MyIsInN1YiI6IjY2MmE2M2FjNTBmN2NhMDBiNWM4OTJmNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ie239o2-bMwl9IKovKs8R6d7Jk2LuynONJKqqEEDl1A`
+      Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}`
   }
 };
 
 
-export async function searchMovie(queryStr: Sort, page: number) {  
+export async function searchMovie(queryStr: ISort, page: number) {  
   if (queryStr.query) {
     const response = await searchByTitle(queryStr.query, page)
     return response
@@ -47,10 +41,7 @@ export async function searchByTitle(title: string, page: number | 1) {
 export async function getMoviesList() {
   try {
     const response=  await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-    if (response.ok) {
-      const data = await response.json()
-      return data
-    }
+    if (response.ok)  return await response.json()
     else throw new Error(response.statusText)   
   } catch (error) {
     console.error(error);

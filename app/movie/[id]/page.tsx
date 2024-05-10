@@ -6,7 +6,7 @@ import { getMovieDesc } from "@/app/actions";
 import { Box, Flex, Group, Image, Loader, Text, Title } from "@mantine/core";
 import MovieCardDetail from "@/app/components/MovieCardDetail";
 import { IconBackground } from "@tabler/icons-react";
-import { MovieDetail } from "@/app/components/Home";
+import { IMovieDetail } from "@/app/interfaces";
 
 
 
@@ -14,7 +14,7 @@ import { MovieDetail } from "@/app/components/Home";
 const Movie = () => {
 
     const params = useParams()
-    const [desc, setDesc] = useState<MovieDetail>()
+    const [desc, setDesc] = useState<IMovieDetail>()
     const [trailer, setTrailer] = useState<{results: Array<{key: number, id: number}>}>()
     const [load, setLoad] = useState(true)
 
@@ -26,11 +26,6 @@ const Movie = () => {
         })
     }, [params.id])
     
-    const companiesArray: any[] = []
-    desc?.production_companies.forEach((company: any) => {
-      companiesArray.push(company)
-    })
-
     return (
         
         load
@@ -53,7 +48,13 @@ const Movie = () => {
                           ?
                           <>
                           <Title mb={16} order={3}>Trailer</Title>
-                          <iframe style={{marginBottom: '16px', borderRadius: '10px', border: 'none', aspectRatio: '16/9'}} width={'100%'} src={`https://www.youtube.com/embed/${trailer.results[trailer.results.length-1].key}?si=${trailer.results[trailer.results.length-1].id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> 
+                          <iframe style={{marginBottom: '16px', borderRadius: '10px', border: 'none', aspectRatio: '16/9'}} 
+                            width={'100%'} src={`https://www.youtube.com/embed/${trailer.results[trailer.results.length-1].key}?si=${trailer.results[trailer.results.length-1].id}`} 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerPolicy="strict-origin-when-cross-origin" 
+                            allowFullScreen>
+                          </iframe> 
                           <hr style={{marginBottom: '16px'}}/>
                           </>
                           :
@@ -73,7 +74,7 @@ const Movie = () => {
                     wrap="nowrap"
                   >
                     {
-                      companiesArray.map(company => {
+                      desc?.production_companies.map(company => {
                         return (
                           <Group key={company.id} mb={12}>
                             {

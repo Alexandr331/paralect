@@ -2,12 +2,12 @@
 import { Button, Group, TextInput, Title } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import { Dispatch, SetStateAction, } from "react";
-import { Sort } from "../actions";
+import { ISort } from "../interfaces";
 
 
 
 const TitleSearch = (
-  {title, setQueryStr, queryStr, search}: {title: string, setQueryStr: Dispatch<SetStateAction<{ query: string; }>>, queryStr: {}, search: (query: Sort) => void}
+  {title, setQueryStr, queryStr, search}: {title: string, setQueryStr: Dispatch<SetStateAction<{ query: string; }>>, queryStr: {}, search: (query: ISort) => void}
 ) => {
 
   return (
@@ -19,10 +19,8 @@ const TitleSearch = (
           variant="unstyled"
           placeholder="Search movie title" 
           type="text"  
-          // w={'75%'}
           onChange={(e) => {
             setQueryStr({'query': e.target.value})
-            // search(e.target.value)
           }}
         />
         <Button 
