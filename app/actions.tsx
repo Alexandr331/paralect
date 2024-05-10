@@ -10,7 +10,6 @@ const options = {
   }
 };
 
-
 export async function searchMovie(queryStr: ISort, page: number) {  
   if (queryStr.query) {
     const response = await searchByTitle(queryStr.query, page)
