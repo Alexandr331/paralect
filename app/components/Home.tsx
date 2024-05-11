@@ -31,7 +31,7 @@ const Home = ({moviesList}: {moviesList: {results: IMovieDetail[], page: number,
       setPageTotal(moviesList.total_pages)
       setPageValue(moviesList.page)
       setLoading(false)
-    }, [])
+    }, [moviesList.page, moviesList.total_pages, moviesList.results])
     
     const sortBy = async (sort: string) => {
       await getSortedMovies(sort).then(data => {

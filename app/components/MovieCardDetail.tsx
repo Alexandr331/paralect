@@ -24,7 +24,7 @@ const MovieCardDetail = ({movie}: any) => {
     
     useEffect(() => {
       formatDuration(movie.runtime)
-    }, [])
+    }, [movie])
 
     return (
       
