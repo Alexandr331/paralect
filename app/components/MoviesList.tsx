@@ -2,22 +2,22 @@
 
 import { Grid } from "@mantine/core"
 import MovieCard from "./MovieCard"
-import React from "react"
+import { memo } from "react"
 import { IMovieDetail } from "../interfaces"
 
-const MoviesList = React.memo( ({moviesList}: any) => {  
+const MoviesList = ({moviesList, genres}: any) => {  
       return (
           <Grid mb={24} >
             {moviesList?.map((movie: IMovieDetail) => (
               <Grid.Col span={{base: 12, md: 6}} key={movie.id} >
-                <MovieCard movie={movie} />
+                <MovieCard movie={movie} genres={genres}/>
               </Grid.Col>
             ))}
           </Grid>
       )
   }
-)
 
-MoviesList.displayName = 'MoviesList'
+
+// MoviesList.displayName = 'MoviesList'
 
 export default MoviesList

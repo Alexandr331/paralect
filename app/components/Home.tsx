@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { getSortedMovies, searchMovie }  from '../actions'
-import { Image, Button, Flex, Grid, Group, Input, Loader, NumberInput, Pagination, Select, Text } from "@mantine/core";
+import { Button, Grid, Group, Input, Loader, NumberInput, Pagination, Select } from "@mantine/core";
 import { YearPickerInput } from "@mantine/dates"
 import { genres } from "../genres";
 import MoviesList from "../components/MoviesList";
@@ -147,7 +147,7 @@ const Home = ({moviesList}: {moviesList: {results: IMovieDetail[], page: number,
                 </Input.Wrapper> 
                 {
                   movies?.length !== 0
-                  ? <MoviesList moviesList={movies}/>
+                  ? <MoviesList moviesList={movies} />
                   : <Empty text="We don&rsquo;t have such movies, look for another one" src="./assets/badSearch.svg"/>
                 }  
                 

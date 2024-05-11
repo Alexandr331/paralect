@@ -2,19 +2,19 @@
 
 import { Box, Flex, Group, Text, Image } from "@mantine/core";
 import { IconStarFilled } from '@tabler/icons-react';
-import { genres } from "../genres";
 import Link from "next/link";
 import RateBtn from "./RateBtn";
-import React from "react";
+import React, { memo } from "react";
+import { genres } from "../genres";
+
 
 const MovieCard = ({movie}: any) => {
-  
-    const genre: string[] = []
-    genres.filter(el => movie.genre_ids?.forEach((gen: any) => {
-        el.value == gen ? genre.push(el.label) : genre;
-        
-    }));
+  const genre: string[] = []
     
+  genres.filter((el: any) => movie.genre_ids?.forEach((gen: any) => {
+    el.value == gen ? genre.push(el.label) : genre;
+  }));
+
     return (
         <Group  h={226} key={movie?.id} className="movie-card" p={24}>
           <Link href={`/movie/${movie?.id}`} style={{display: 'flex', width: '100%', gap: '16px'}}>
@@ -34,7 +34,7 @@ const MovieCard = ({movie}: any) => {
                 <Text c={'#7B7C88'} fw={400} size="md">{'(' + movie?.vote_count + ')'}</Text>
               </Group>
                 <Box mt={'auto'} style={{display: 'flex', fontSize: '12px', color: 'grey'}}>
-                  Genres:&nbsp; <Text size="xs" c={'#000000'}>{genre.join(', ')}</Text>
+                  Genres:&nbsp; <Text size="xs" c={'#000000'}>{genre ? genre.join(', ') : ''}</Text>
                 </Box>
             </Flex>
           </Link>
@@ -42,5 +42,5 @@ const MovieCard = ({movie}: any) => {
         </Group>
     )
 }
-
+// MovieCard.displayName = 'MovieCard';
 export default MovieCard

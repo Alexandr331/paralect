@@ -1,5 +1,6 @@
 'use server'
 
+import { Loader } from "@mantine/core"
 import { getMoviesList } from "./actions"
 import Home from "./components/Home"
 
@@ -10,9 +11,11 @@ async function getMovies() {
 }
 
 const Main = async() => {
-  const moviesList = await getMovies()
+  const data = await getMovies()
   
-  return <Home  moviesList={moviesList} />
+  return (
+    data ? <Home  moviesList={data} /> : <Loader />
+  )
 }
 
 export default Main

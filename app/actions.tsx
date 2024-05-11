@@ -1,6 +1,6 @@
 'use server'
 
-import { ISort } from "./interfaces";
+import { IGenres, IMovieDetail, ISort } from "./interfaces";
 
 const options = {
   method: 'GET',
@@ -9,6 +9,14 @@ const options = {
       Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}`
   }
 };
+
+export async function getGenres(url: string) {
+  const res = await fetch(url, options)
+  if (res.ok) {
+    const genres = await res.json()
+    return genres
+  } else throw new Error(res.statusText)
+}
 
 export async function searchMovie(queryStr: ISort, page: number) {  
   if (queryStr.query) {
@@ -39,8 +47,8 @@ export async function searchByTitle(title: string, page: number | 1) {
 
 export async function getMoviesList() {
   try {
-    const response=  await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-    if (response.ok)  return await response.json()
+    const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    if (response.ok ) return await response.json()
     else throw new Error(response.statusText)   
   } catch (error) {
     console.error(error);
@@ -60,10 +68,10 @@ export async function getSortedMovies(sortBy: string) {
 export async function getMovieDesc(id: string | string[]) {
     try {
       const response = await fetch(`https://api.themoviedb.org/3/movie/${id.toString()}?language=en-US`, options)
-      const videoData = await fetch(`https://api.themoviedb.org/3/movie/${id.toString()}/videos?language=en-US`, options)
-      if (response.ok) {
+      const responseVideo = await fetch(`https://api.themoviedb.org/3/movie/${id.toString()}/videos?language=en-US`, options)
+      if (response.ok && responseVideo.ok) {
         const description = await response.json()
-        const video = await videoData.json()
+        const video = await responseVideo.json()
         return {
           description,
           video,
