@@ -7,7 +7,7 @@ import { ISort } from "../interfaces";
 
 
 const TitleSearch = (
-  {title, setQueryStr, queryStr, search}: {title: string, setQueryStr: Dispatch<SetStateAction<{ query: string; }>>, queryStr: {}, search: (query: ISort) => void}
+  {title, setQueryStr, queryStr, search}: {title: string, setQueryStr: Dispatch<SetStateAction<{ original_title: string; }>>, queryStr: {}, search: (query: ISort) => void}
 ) => {
 
   return (
@@ -20,7 +20,7 @@ const TitleSearch = (
           placeholder="Search movie title" 
           type="text"  
           onChange={(e) => {
-            setQueryStr({'query': e.target.value})
+            setQueryStr({'original_title': e.target.value})
           }}
         />
         <Button 

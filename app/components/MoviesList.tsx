@@ -17,7 +17,4 @@ const MoviesList = ({moviesList, genres}: any) => {
       )
   }
 
-
-// MoviesList.displayName = 'MoviesList'
-
 export default MoviesList

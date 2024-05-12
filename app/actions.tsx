@@ -19,14 +19,14 @@ export async function getGenres(url: string) {
 }
 
 export async function searchMovie(queryStr: ISort, page: number) {  
-  if (queryStr.query) {
-    const response = await searchByTitle(queryStr.query, page)
+  if (queryStr.original_title) {
+    const response = await searchByTitle(queryStr.original_title, page)
     return response
   } else {
     const queryString = (queryStr.primary_release_year ? `&primary_release_year=${queryStr.primary_release_year}` : '') 
                       + (queryStr.with_genres ? `&with_genres=${queryStr.with_genres}` : '') 
-                      + (queryStr["vote_average.gte"] ? `&vote_average.gte=${queryStr["vote_average.gte"]}` : '') 
-                      + (queryStr["vote_average.lte"] ? `&vote_average.lte=${queryStr["vote_average.lte"]}` : '') 
+                      + (queryStr["vote_averagegte"] ? `&vote_average.gte=${queryStr["vote_averagegte"]}` : '') 
+                      + (queryStr["vote_averagelte"] ? `&vote_average.lte=${queryStr["vote_averagelte"]}` : '') 
                       + (page ? `&page=${page}` : '&page=1')
     const response = await searchWithParams(queryString)
     return response

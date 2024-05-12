@@ -12,7 +12,7 @@ import Empty from "../components/Empty";
 const Watched = () => {
 
     const router = useRouter()
-    const [queryStr, setQueryStr] = useState<{query: string}>({query: ''})
+    const [queryStr, setQueryStr] = useState<{original_title: string}>({original_title: ''})
     const [favoriteMovies, setFavoriteMovies] = useState<IMovieDetail[]>();
     const [filteredResults, setFilteredResults] = useState<IMovieDetail[] | undefined>();
     const [loading, setLoading] = useState<boolean>()
@@ -26,10 +26,10 @@ const Watched = () => {
     },[])
 
     const handleSearch = (queryStr: ISort) => {
-      const {query} = queryStr
-      if (query) {
+      const {original_title} = queryStr
+      if (original_title) {
           setFilteredResults(favoriteMovies?.filter((result) =>
-            result.original_title.toLowerCase().includes(query.toLowerCase())
+            result.original_title.toLowerCase().includes(original_title.toLowerCase())
           ))  
       }
       else setFilteredResults(favoriteMovies)
