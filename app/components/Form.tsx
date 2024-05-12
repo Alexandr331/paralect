@@ -20,7 +20,6 @@ const Form = ({
 }) => {
 
   const [rateFrom, setRateFrom] = useState<number | string>(0)
-  const [rateTo, setRateTo] = useState<number | string>(0)
 
     const form = useForm<ISort>({
         mode: 'uncontrolled',
@@ -40,7 +39,6 @@ const Form = ({
           setPageValue(data.page)
           setLoading(false)
         })
-        console.log(values);
       }
     
       return (

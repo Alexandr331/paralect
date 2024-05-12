@@ -23,10 +23,11 @@ export async function searchMovie(queryStr: ISort, page: number) {
     const response = await searchByTitle(queryStr.original_title, page)
     return response
   } else {
-    const queryString = (queryStr.primary_release_year ? `&primary_release_year=${queryStr.primary_release_year}` : '') 
+    const formatYear = queryStr.primary_release_year?.getFullYear()
+    const queryString = (formatYear ? `&primary_release_year=${formatYear}` : '') 
                       + (queryStr.with_genres ? `&with_genres=${queryStr.with_genres}` : '') 
-                      + (queryStr["vote_averagegte"] ? `&vote_average.gte=${queryStr["vote_averagegte"]}` : '') 
-                      + (queryStr["vote_averagelte"] ? `&vote_average.lte=${queryStr["vote_averagelte"]}` : '') 
+                      + (queryStr.vote_averagegte ? `&vote_average.gte=${queryStr.vote_averagegte}` : '') 
+                      + (queryStr.vote_averagelte ? `&vote_average.lte=${queryStr.vote_averagelte}` : '') 
                       + (page ? `&page=${page}` : '&page=1')
     const response = await searchWithParams(queryString)
     return response

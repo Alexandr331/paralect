@@ -1,7 +1,7 @@
 export interface ISort {
     'original_title'?: string,
     'with_genres'?: string,
-    'primary_release_year'?: string,
+    'primary_release_year'?: Date,
     'vote_averagegte'?: string
     'vote_averagelte'?: string
 }
