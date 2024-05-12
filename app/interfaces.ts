@@ -1,9 +1,9 @@
 export interface ISort {
-    'original_title'?: string,
-    'with_genres'?: string,
-    'primary_release_year'?: Date,
-    'vote_averagegte'?: string
-    'vote_averagelte'?: string
+    'original_title'?: string | null,
+    'with_genres'?: string | null,
+    'primary_release_year'?: Date | null,
+    'vote_averagegte'?: string | null,
+    'vote_averagelte'?: string | null,
 }
 
 export interface IGenres {

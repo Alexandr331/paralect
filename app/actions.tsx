@@ -29,6 +29,8 @@ export async function searchMovie(queryStr: ISort, page: number) {
                       + (queryStr.vote_averagegte ? `&vote_average.gte=${queryStr.vote_averagegte}` : '') 
                       + (queryStr.vote_averagelte ? `&vote_average.lte=${queryStr.vote_averagelte}` : '') 
                       + (page ? `&page=${page}` : '&page=1')
+    console.log(queryString);
+    
     const response = await searchWithParams(queryString)
     return response
   }

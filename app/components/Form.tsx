@@ -1,13 +1,13 @@
-import { Box, Button, Grid, Group, NumberInput, Select, TextInput, Title } from "@mantine/core";
+import { Button, Grid, Group, NumberInput, Select, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import TitleSearch from "./TitleSearch";
 import InputBox from "./InputBox";
 import { genres } from "../genres";
 import { YearPickerInput } from "@mantine/dates";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { IconSearch } from "@tabler/icons-react";
 import { searchMovie } from "../actions";
 import { IMovieDetail, ISort } from "../interfaces";
+
 
 const Form = ({
   heading, setMovies, setPageTotal, setPageValue, setLoading,
@@ -19,20 +19,20 @@ const Form = ({
   setLoading: Dispatch<SetStateAction<boolean>>
 }) => {
 
-  const [rateFrom, setRateFrom] = useState<number | string>(0)
-
-    const form = useForm<ISort>({
+    const form = useForm({
         mode: 'uncontrolled',
         initialValues: {
-          'primary_release_year': undefined,
-          'with_genres': undefined,
-          'vote_averagegte': undefined,
-          'vote_averagelte': undefined,
-          'original_title': undefined,
+          'primary_release_year': null,
+          'with_genres': null,
+          'vote_averagegte': null,
+          'vote_averagelte': null,
+          'original_title': null,
         },
       });
 
       const search = async (values: typeof form.values, page?: number) => {
+        console.log(values);
+        
         await searchMovie(values, page ?? 1).then(data => {
           setMovies(data.results)
           setPageTotal(data.total_pages)
@@ -94,14 +94,14 @@ const Form = ({
                     min={0}
                     max={10}
                     key={form.key('vote_averagegte')}
-                  {...form.getInputProps('vote_averagegte')}
+                    {...form.getInputProps('vote_averagegte')}
                   />
                   <NumberInput
                     placeholder="To"
-                    min={Number(rateFrom)}
+                    min={0}
                     max={10}
                     key={form.key('vote_averagelte')}
-                  {...form.getInputProps('vote_averagelte')}
+                    {...form.getInputProps('vote_averagelte')}
                   />
                 </Group>
               </InputBox>
