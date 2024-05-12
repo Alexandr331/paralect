@@ -4,7 +4,7 @@ import { ActionIcon, Button, Flex, Modal, Rating, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconStarFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { IMovieDetail } from "../interfaces";
+import { IMovieDetail } from "../lib/interfaces";
 
 
 const RateBtn =({movie}: {movie: IMovieDetail}) => {

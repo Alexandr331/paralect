@@ -2,11 +2,11 @@
 
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { getMovieDesc } from "@/app/actions";
+import { getMovieDesc } from "@/app/lib/actions";
 import { Box, Flex, Group, Image, Loader, Text, Title } from "@mantine/core";
 import MovieCardDetail from "@/app/components/MovieCardDetail";
 import { IconBackground } from "@tabler/icons-react";
-import { IMovieDetail } from "@/app/interfaces";
+import { IMovieDetail } from "@/app/lib/interfaces";
 
 
 

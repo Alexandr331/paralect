@@ -3,7 +3,7 @@
 import { Grid } from "@mantine/core"
 import MovieCard from "./MovieCard"
 import { memo } from "react"
-import { IMovieDetail } from "../interfaces"
+import { IMovieDetail } from "../lib/interfaces"
 
 const MoviesList = ({moviesList, genres}: any) => {  
       return (

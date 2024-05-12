@@ -1,6 +1,6 @@
 'use server'
 
-import { IGenres, IMovieDetail, ISort } from "./interfaces";
+import { ISort } from "./interfaces";
 
 const options = {
   method: 'GET',
@@ -50,7 +50,7 @@ export async function searchByTitle(title: string, page: number | 1) {
 
 export async function getMoviesList() {
   try {
-    const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    const response = await fetch('https://api.themoviedb.org/3/movie/popular?include_adult=false&include_video=false&language=en-US&page=1', options)
     if (response.ok ) return await response.json()
     else throw new Error(response.statusText)   
   } catch (error) {
@@ -60,7 +60,7 @@ export async function getMoviesList() {
 
 export async function getSortedMovies(sortBy: string) {
   try {
-    const response=  await fetch(`https://api.themoviedb.org/3/movie/${sortBy}?language=en-US&page=1`, options)
+    const response=  await fetch(`https://api.themoviedb.org/3/movie/${sortBy}?include_adult=false&include_video=false&language=en-US&page=1`, options)
     if (response.ok) return await response.json()
     else throw new Error(response.statusText) 
   } catch (error) {

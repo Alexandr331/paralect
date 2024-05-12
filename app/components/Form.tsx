@@ -5,17 +5,14 @@ import { genres } from "../genres";
 import { YearPickerInput } from "@mantine/dates";
 import { Dispatch, SetStateAction } from "react";
 import { IconSearch } from "@tabler/icons-react";
-import { searchMovie } from "../actions";
-import { IMovieDetail, ISort } from "../interfaces";
+import { ISort } from "../lib/interfaces";
 
 
 const Form = ({
-  heading, setMovies, setPageTotal, setPageValue, setLoading,
+  heading, handleSearch, setLoading,
 }: {
   heading: string,
-  setMovies: Dispatch<SetStateAction<IMovieDetail[] | undefined>>
-  setPageTotal: Dispatch<SetStateAction<number | undefined>>
-  setPageValue: Dispatch<SetStateAction<number>>
+  handleSearch: (query: ISort) => void,
   setLoading: Dispatch<SetStateAction<boolean>>
 }) => {
 
@@ -29,22 +26,11 @@ const Form = ({
           'original_title': null,
         },
       });
-
-      const search = async (values: typeof form.values, page?: number) => {
-        console.log(values);
-        
-        await searchMovie(values, page ?? 1).then(data => {
-          setMovies(data.results)
-          setPageTotal(data.total_pages)
-          setPageValue(data.page)
-          setLoading(false)
-        })
-      }
     
       return (
-        <form onSubmit={form.onSubmit((values) => search(values))}>
-          <Group display={'flex'} w={'100%'}>
-            <Group justify="space-between" mb={40}>
+        <form onSubmit={form.onSubmit((values) => handleSearch(values))}>
+          <Group display={'flex'} >
+            <Group justify="space-between" w={'100%'} mb={40}>
               <Title order={1}>{heading}</Title>
                 <Group id="search" className="search-form"  bg={'#fff'} p={'8px 12px'} w={490} display={'flex'} justify="space-between" style={{borderRadius: '8px'}}>
                   <TextInput 

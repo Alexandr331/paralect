@@ -1,7 +1,7 @@
 'use server'
 
 import { Loader } from "@mantine/core"
-import { getMoviesList } from "./actions"
+import { getMoviesList } from "./lib/actions"
 import Home from "./components/Home"
 
 

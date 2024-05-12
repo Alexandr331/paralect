@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { getSortedMovies, searchMovie }  from '../actions'
+import { getSortedMovies, searchMovie }  from '../lib/actions'
 import { Input, Loader, Pagination, Select } from "@mantine/core";
 import MoviesList from "../components/MoviesList";
-import { IMovieDetail, ISort } from "../interfaces";
+import { IMovieDetail, ISort } from "../lib/interfaces";
 import Empty from "./Empty";
 import Form from "./Form";
 
@@ -51,7 +51,7 @@ const Home = ({moviesList}: {moviesList: {results: IMovieDetail[], page: number,
           loading
             ? <Loader m={'auto'} display={'block'} size={'lg'} />
             : <>
-                <Form heading="Movies" setMovies={setMovies} setLoading={setLoading} setPageValue={setPageValue} setPageTotal={setPageTotal}/>
+                <Form heading="Movies" setLoading={setLoading} handleSearch={search}/>
 
                 <Input.Wrapper
                       size="lg"
