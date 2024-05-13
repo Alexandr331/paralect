@@ -8,23 +8,38 @@ import { IMovieDetail } from "../lib/interfaces";
 
 
 const RateBtn =({movie}: {movie: IMovieDetail}) => {
-  const [watched, setWatched] = useState<IMovieDetail | undefined>()
+  // const [watched, setWatched] = useState<IMovieDetail | undefined>()
   const [rate, setRate] = useState<number>()
-  const [ratedMovie, setRatedMovie] = useState<IMovieDetail[] | undefined>()
+  // const [ratedMovie, setRatedMovie] = useState<IMovieDetail[] | undefined>()
   const [opened, { open, close }] = useDisclosure(false);
 
   const watchedMovie = () => {
     movie.user_rate = rate
-    setRatedMovie([movie])
-    localStorage.setItem('ratedMovies', JSON.stringify([...ratedMovie || [], movie]))
+    if (localStorage.getItem('ratedMovies')) {
+      const ratedMov: IMovieDetail[] = JSON.parse(localStorage.getItem('ratedMovies') || '')
+      console.log(ratedMov);
+      console.log(movie);
+      
+      if (ratedMov.filter(el => el.id === movie.id).length !== 0) {
+        // const ratedMov: IMovieDetail[] = JSON.parse(localStorage.getItem('ratedMovies') || '')
+        // localStorage.setItem('ratedMovies', JSON.stringify([...ratedMov, movie]))
+        console.log(ratedMov.filter(el => el.id === movie.id).length)
+        console.log(movie.id)
+      }
+      else {
+          console.log('d');
+        localStorage.setItem('ratedMovies', JSON.stringify([...ratedMov, movie]))
+        
+      }
+    } else {
+      localStorage.setItem('ratedMovies', JSON.stringify([movie]))
+    }
   }
 
   useEffect(() => {
     if (localStorage.getItem('ratedMovies')) {
       const ratedMoviesList = JSON.parse(localStorage.getItem('ratedMovies') || '')
-      setRatedMovie(ratedMoviesList)
       const ratedMovie = ratedMoviesList.find((el: IMovieDetail) => el.id === movie.id)
-      setWatched(ratedMovie)
       setRate(ratedMovie?.user_rate)
     }
   }, [movie.id])
